@@ -1,0 +1,27 @@
+{
+  "name": "restaurant-premium",
+  "version": "1.0.0",
+  "description": "Premium restaurant website built with Next.js, Tailwind CSS, and Framer Motion",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "keywords": ["restaurant", "nextjs", "tailwind", "framer-motion", "premium", "website"],
+  "author": "Roxana Lăudatu",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^24.10.2",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "autoprefixer": "^10.4.22",
+    "framer-motion": "^12.23.25",
+    "next": "^16.0.8",
+    "postcss": "^8.5.6",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "tailwindcss": "^4.1.17",
+    "typescript": "^5.9.3"
+  }
+}
