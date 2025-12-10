@@ -20,7 +20,7 @@ const menuData: Record<string, MenuItem[]> = {
       description: 'File de vită Angus, rucola, parmezan, trufe',
       ingredients: 'vită Angus, rucola, parmezan, ulei trufe',
       price: 68,
-      image: 'https://images.unsplash.com/photo-1625938145312-788b23e5325f?q=80&w=400',
+      image: 'https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=800',
       badges: ['signature'],
     },
     {

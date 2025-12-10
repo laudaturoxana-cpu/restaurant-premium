@@ -44,15 +44,22 @@ export default function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-3 sm:py-4 flex items-center justify-between">
-        {/* Logo - responsive size */}
+        {/* Logo - compact responsive */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-xl sm:text-2xl font-serif font-bold text-white tracking-wider hover:text-secondary transition-colors cursor-pointer"
+          className="flex items-center space-x-2 cursor-pointer group"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
-          [LOGO]
+          {/* Icon/Symbol */}
+          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-secondary to-secondary-dark rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <span className="text-white font-serif font-bold text-sm sm:text-base">R</span>
+          </div>
+          {/* Text - hidden on very small screens */}
+          <span className="hidden sm:block text-base md:text-lg font-serif font-bold text-white tracking-wide group-hover:text-secondary transition-colors">
+            Restaurant
+          </span>
         </motion.div>
 
         {/* Desktop Navigation */}
