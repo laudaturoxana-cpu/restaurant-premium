@@ -19,23 +19,23 @@
 }
 
 @layer components {
-  /* Premium Button Styles */
+  /* Premium Button Styles - Responsive */
   .btn-primary {
-    @apply bg-secondary text-white px-8 py-4 rounded-sm font-display font-medium text-sm uppercase tracking-wide transition-all duration-300 hover:bg-secondary-dark hover:scale-105 hover:shadow-xl;
+    @apply bg-secondary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-display font-medium text-xs sm:text-sm uppercase tracking-wide transition-all duration-300 hover:bg-secondary-dark hover:scale-105 hover:shadow-xl shadow-lg shadow-secondary/30;
   }
 
   .btn-secondary {
-    @apply border-2 border-secondary text-secondary px-8 py-4 rounded-sm font-display font-medium text-sm uppercase tracking-wide transition-all duration-300 hover:bg-secondary hover:text-white hover:scale-105;
+    @apply border-2 border-secondary text-secondary px-6 sm:px-8 py-3 sm:py-4 rounded-full font-display font-medium text-xs sm:text-sm uppercase tracking-wide transition-all duration-300 hover:bg-secondary hover:text-white hover:scale-105;
   }
 
-  /* Section Spacing */
+  /* Section Spacing - Mobile First */
   .section-padding {
-    @apply py-20 md:py-32 px-6 md:px-12 lg:px-24;
+    @apply py-12 sm:py-16 md:py-20 lg:py-32 px-4 sm:px-6 md:px-12 lg:px-24;
   }
 
-  /* Premium Card */
+  /* Premium Card - Glassmorphism */
   .card-premium {
-    @apply bg-white rounded-sm shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden;
+    @apply bg-white/95 backdrop-blur-sm rounded-lg shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-white/20;
   }
 
   /* Smooth Gradient Overlay */
@@ -46,6 +46,20 @@
       rgba(26, 26, 26, 0.5) 50%,
       rgba(26, 26, 26, 0.8) 100%
     );
+  }
+
+  /* Glassmorphism utility */
+  .glass {
+    @apply backdrop-blur-xl bg-white/10 border border-white/20;
+  }
+
+  /* Responsive text utilities */
+  .heading-responsive {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  .text-responsive {
+    @apply text-sm sm:text-base md:text-lg;
   }
 }
 
