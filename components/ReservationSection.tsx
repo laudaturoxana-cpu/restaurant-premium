@@ -80,13 +80,13 @@ export default function ReservationSection() {
           className="text-center mb-8 sm:mb-12 lg:mb-16"
         >
           <p className="text-secondary uppercase tracking-[0.2em] text-xs sm:text-sm font-display mb-3 sm:mb-4">
-            Rezervări
+            Rezervari
           </p>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-primary mb-3 sm:mb-4 px-4">
-            Rezervă-ți Masa Acum
+            Rezerva-ti Masa Acum
           </h2>
           <p className="text-text-secondary max-w-2xl mx-auto text-sm sm:text-base lg:text-lg px-4 leading-relaxed">
-            Garantăm cele mai bune mese pentru rezervările făcute în avans
+            Garantam cele mai bune mese pentru rezervarile facute in avans
           </p>
         </motion.div>
 
@@ -120,10 +120,10 @@ export default function ReservationSection() {
                 </svg>
               </motion.div>
               <h3 className="text-2xl font-serif font-bold text-primary mb-3">
-                Rezervare Trimisă cu Succes!
+                Rezervare Trimisa cu Succes!
               </h3>
               <p className="text-text-secondary">
-                Vei primi confirmarea în maxim 2 ore. Mulțumim!
+                Vei primi confirmarea in maxim 2 ore. Multumim!
               </p>
             </div>
           ) : (
@@ -228,7 +228,7 @@ export default function ReservationSection() {
                     onChange={handleChange}
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all duration-300 text-sm sm:text-base"
                   >
-                    <option value="">Selectează</option>
+                    <option value="">Selecteaza</option>
                     {timeSlots.map((slot) => (
                       <option key={slot} value={slot}>
                         {slot}
@@ -255,7 +255,7 @@ export default function ReservationSection() {
                   >
                     {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
                       <option key={num} value={num}>
-                        {num} {num === 1 ? 'persoană' : 'persoane'}
+                        {num} {num === 1 ? 'persoana' : 'persoane'}
                       </option>
                     ))}
                     <option value="10+">10+ persoane</option>
@@ -270,7 +270,7 @@ export default function ReservationSection() {
                 transition={{ duration: 0.5, delay: 0.6 }}
               >
                 <label htmlFor="preferences" className="block text-xs sm:text-sm font-display font-medium text-primary mb-2">
-                  Preferințe Speciale
+                  Preferinte Speciale
                 </label>
                 <textarea
                   id="preferences"
@@ -299,7 +299,7 @@ export default function ReservationSection() {
                   className="w-5 h-5 text-secondary focus:ring-2 focus:ring-secondary border-gray-300 rounded mt-0.5 sm:mt-0"
                 />
                 <label htmlFor="tastingMenu" className="text-xs sm:text-sm text-text-secondary cursor-pointer">
-                  Doresc informații despre meniul degustare
+                  Doresc informatii despre meniul degustare
                 </label>
               </motion.div>
 
@@ -339,9 +339,9 @@ export default function ReservationSection() {
                     <span>Se trimite...</span>
                   </>
                 ) : (
-                  <span>Confirmă Rezervarea</span>
+                  <span>Confirma Rezervarea</span>
                 )}
-              </button>
+              </motion.button>
 
               {/* Info Text - Responsive */}
               <motion.p
@@ -350,8 +350,8 @@ export default function ReservationSection() {
                 transition={{ duration: 0.5, delay: 0.75 }}
                 className="text-xs sm:text-sm text-text-secondary text-center leading-relaxed px-2"
               >
-                Vei primi confirmarea în maxim 2 ore. Pentru rezervări de peste 6 persoane sau
-                evenimente speciale, te rugăm să ne suni direct.
+                Vei primi confirmarea in maxim 2 ore. Pentru rezervari de peste 6 persoane sau
+                evenimente speciale, te rugam sa ne suni direct.
               </motion.p>
             </form>
           )}
@@ -365,7 +365,7 @@ export default function ReservationSection() {
           className="text-center mt-6 sm:mt-8 px-4"
         >
           <p className="text-text-secondary mb-3 sm:mb-4 text-sm sm:text-base">
-            Preferi să vorbești direct?
+            Preferi sa vorbesti direct?
           </p>
           <motion.a
             href="tel:0721000000"
@@ -382,7 +382,7 @@ export default function ReservationSection() {
               />
             </svg>
             <span>0721 XXX XXX</span>
-            <span className="text-xs sm:text-sm text-text-secondary">(răspundem 10:00-22:00)</span>
+            <span className="text-xs sm:text-sm text-text-secondary">(raspundem 10:00-22:00)</span>
           </motion.a>
         </motion.div>
       </div>
