@@ -79,51 +79,53 @@ export default function GallerySection() {
     <>
       <section id="galerie" className="section-padding bg-background">
         <div className="max-w-7xl mx-auto">
-          {/* Header */}
+          {/* Header - Responsive */}
           <motion.div
             ref={ref}
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="text-center mb-12"
+            className="text-center mb-8 sm:mb-12 lg:mb-16"
           >
-            <p className="text-secondary uppercase tracking-widest text-sm font-display mb-2">
+            <p className="text-secondary uppercase tracking-[0.2em] text-xs sm:text-sm font-display mb-3 sm:mb-4">
               Galerie
             </p>
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-primary mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-primary mb-3 sm:mb-4 px-4">
               Fiecare Farfurie, o Operă de Artă
             </h2>
-            <p className="text-text-secondary max-w-2xl mx-auto">
+            <p className="text-text-secondary max-w-2xl mx-auto text-sm sm:text-base lg:text-lg px-4 leading-relaxed">
               Descoperă atmosfera și preparatele noastre prin imaginile care spun povestea restaurantului
             </p>
           </motion.div>
 
-          {/* Filters */}
+          {/* Filters - Responsive rounded buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-wrap justify-center gap-3 mb-12"
+            className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12 px-4"
           >
             {filters.map((filter) => (
-              <button
+              <motion.button
                 key={filter.id}
                 onClick={() => setActiveFilter(filter.id)}
-                className={`px-6 py-2 rounded-sm font-display text-sm uppercase tracking-wide transition-all duration-300 ${
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full font-display text-xs sm:text-sm uppercase tracking-wide transition-all duration-300 ${
                   activeFilter === filter.id
-                    ? 'bg-secondary text-white shadow-lg'
+                    ? 'bg-gradient-to-r from-secondary to-secondary-dark text-white shadow-lg shadow-secondary/30'
                     : 'bg-white text-text-secondary hover:bg-secondary/10 border border-secondary/20'
                 }`}
               >
                 {filter.label}
-              </button>
+              </motion.button>
             ))}
           </motion.div>
 
-          {/* Gallery Grid */}
+          {/* Gallery Grid - Responsive masonry-like */}
           <motion.div
             layout
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
           >
             {filteredImages.map((image, index) => (
               <motion.div
@@ -133,16 +135,19 @@ export default function GallerySection() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="relative group cursor-pointer overflow-hidden rounded-sm shadow-lg aspect-square"
+                whileHover={{ scale: 1.03, y: -8 }}
+                className="relative group cursor-pointer overflow-hidden rounded-2xl shadow-xl aspect-square"
                 onClick={() => setSelectedImage(image.url)}
               >
                 <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                   style={{ backgroundImage: `url('${image.url}')` }}
                 />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
-                  <svg
-                    className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center">
+                  <motion.svg
+                    initial={{ scale: 0 }}
+                    whileHover={{ scale: 1 }}
+                    className="w-12 h-12 sm:w-16 sm:h-16 text-white drop-shadow-lg"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -153,7 +158,7 @@ export default function GallerySection() {
                       strokeWidth={2}
                       d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
                     />
-                  </svg>
+                  </motion.svg>
                 </div>
               </motion.div>
             ))}
@@ -161,21 +166,25 @@ export default function GallerySection() {
         </div>
       </section>
 
-      {/* Lightbox Modal */}
+      {/* Lightbox Modal - Better responsive */}
       {selectedImage && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6"
           onClick={() => setSelectedImage(null)}
         >
-          <button
-            className="absolute top-6 right-6 text-white hover:text-secondary transition-colors duration-300"
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2 }}
+            whileHover={{ scale: 1.1, rotate: 90 }}
+            className="absolute top-4 sm:top-6 right-4 sm:right-6 text-white hover:text-secondary transition-colors duration-300 bg-white/10 backdrop-blur-md rounded-full p-2 sm:p-3"
             onClick={() => setSelectedImage(null)}
             aria-label="Close"
           >
-            <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -183,14 +192,14 @@ export default function GallerySection() {
                 d="M6 18L18 6M6 6l12 12"
               />
             </svg>
-          </button>
+          </motion.button>
           <motion.img
-            initial={{ scale: 0.8 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.3 }}
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.3, type: "spring" }}
             src={selectedImage}
             alt="Gallery image"
-            className="max-w-full max-h-[90vh] object-contain rounded-sm"
+            className="max-w-full max-h-[90vh] object-contain rounded-2xl shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           />
         </motion.div>

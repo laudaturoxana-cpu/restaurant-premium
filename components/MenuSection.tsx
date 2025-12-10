@@ -113,54 +113,56 @@ export default function MenuSection() {
   return (
     <section id="meniu" className="section-padding bg-white">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
+        {/* Header - Responsive text */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          className="text-center mb-8 sm:mb-12 lg:mb-16"
         >
-          <p className="text-secondary uppercase tracking-widest text-sm font-display mb-2">
+          <p className="text-secondary uppercase tracking-[0.2em] text-xs sm:text-sm font-display mb-3 sm:mb-4">
             Meniul Nostru
           </p>
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-primary mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-primary mb-3 sm:mb-4 px-4">
             Experiențe Culinare Rafinate
           </h2>
-          <p className="text-text-secondary max-w-2xl mx-auto">
+          <p className="text-text-secondary max-w-2xl mx-auto text-sm sm:text-base lg:text-lg px-4 leading-relaxed">
             Fiecare preparat este creat cu ingrediente premium, selectate zilnic pentru prospețime maximă
           </p>
         </motion.div>
 
-        {/* Tabs */}
+        {/* Tabs - Responsive with scrollable on mobile */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-4 mb-12"
+          className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-8 sm:mb-12 px-4"
         >
           {tabs.map((tab) => (
-            <button
+            <motion.button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-6 py-3 rounded-sm font-display text-sm uppercase tracking-wide transition-all duration-300 ${
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-display text-xs sm:text-sm uppercase tracking-wide transition-all duration-300 ${
                 activeTab === tab.id
-                  ? 'bg-secondary text-white shadow-lg'
-                  : 'bg-background text-text-secondary hover:bg-secondary/10'
+                  ? 'bg-gradient-to-r from-secondary to-secondary-dark text-white shadow-lg shadow-secondary/30'
+                  : 'bg-background text-text-secondary hover:bg-secondary/10 border border-secondary/20'
               }`}
             >
               {tab.label}
-            </button>
+            </motion.button>
           ))}
         </motion.div>
 
-        {/* Menu Items Grid */}
+        {/* Menu Items Grid - Better responsive */}
         <motion.div
           key={activeTab}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="grid md:grid-cols-2 gap-8"
+          className="grid sm:grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8"
         >
           {menuData[activeTab]?.map((item, index) => (
             <motion.div
@@ -168,91 +170,111 @@ export default function MenuSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="card-premium group"
+              whileHover={{ y: -8, boxShadow: "0 25px 50px rgba(0,0,0,0.15)" }}
+              className="card-premium group cursor-pointer"
             >
-              <div className="relative h-64 overflow-hidden">
+              <div className="relative h-56 sm:h-64 lg:h-72 overflow-hidden rounded-t-lg">
                 <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                   style={{ backgroundImage: `url('${item.image}')` }}
                 />
+                {/* Gradient overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
                 {item.badges && (
-                  <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+                  <div className="absolute top-3 sm:top-4 left-3 sm:left-4 flex flex-wrap gap-2">
                     {item.badges.map((badge) => (
-                      <span
+                      <motion.span
                         key={badge}
-                        className={`${getBadgeColor(badge)} px-3 py-1 rounded-full text-xs font-display uppercase tracking-wide`}
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.3, delay: index * 0.1 + 0.2 }}
+                        className={`${getBadgeColor(badge)} px-2.5 sm:px-3 py-1 rounded-full text-xs font-display uppercase tracking-wide shadow-lg backdrop-blur-sm`}
                       >
                         {getBadgeIcon(badge)} {badge}
-                      </span>
+                      </motion.span>
                     ))}
                   </div>
                 )}
               </div>
-              <div className="p-6">
-                <h3 className="text-2xl font-serif font-bold text-primary mb-2">
+              <div className="p-5 sm:p-6">
+                <h3 className="text-xl sm:text-2xl font-serif font-bold text-primary mb-2 group-hover:text-secondary transition-colors duration-300">
                   {item.name}
                 </h3>
-                <p className="text-text-secondary mb-3">{item.description}</p>
-                <p className="text-sm text-text-secondary italic mb-4">
+                <p className="text-text-secondary mb-3 text-sm sm:text-base leading-relaxed">{item.description}</p>
+                <p className="text-xs sm:text-sm text-text-secondary/80 italic mb-4 leading-relaxed">
                   {item.ingredients}
                 </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-2xl font-display font-semibold text-secondary">
+                <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                  <span className="text-xl sm:text-2xl font-display font-semibold text-secondary">
                     {item.price} lei
                   </span>
-                  <button className="bg-secondary/10 hover:bg-secondary hover:text-white text-secondary px-4 py-2 rounded-sm transition-all duration-300 text-sm font-display uppercase tracking-wide">
+                  <motion.button
+                    whileHover={{ scale: 1.05, backgroundColor: "rgb(184, 149, 106)" }}
+                    whileTap={{ scale: 0.95 }}
+                    className="bg-secondary/10 hover:text-white text-secondary px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 text-xs sm:text-sm font-display uppercase tracking-wide shadow-sm hover:shadow-md"
+                  >
                     + Adaugă
-                  </button>
+                  </motion.button>
                 </div>
               </div>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Tasting Menu Banner */}
+        {/* Tasting Menu Banner - Modern glassmorphism */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-16 bg-gradient-to-r from-secondary/10 via-secondary/5 to-secondary/10 rounded-sm p-8 md:p-12 text-center border-2 border-secondary/20"
+          whileHover={{ scale: 1.02 }}
+          className="mt-12 sm:mt-16 bg-gradient-to-r from-secondary/10 via-secondary/5 to-secondary/10 rounded-2xl p-6 sm:p-8 md:p-12 text-center border-2 border-secondary/20 backdrop-blur-sm shadow-xl"
         >
-          <span className="inline-block bg-secondary text-white px-4 py-2 rounded-full text-xs font-display uppercase tracking-wide mb-4">
+          <motion.span
+            initial={{ scale: 0 }}
+            animate={isInView ? { scale: 1 } : {}}
+            transition={{ duration: 0.5, delay: 0.5, type: "spring" }}
+            className="inline-block bg-gradient-to-r from-secondary to-secondary-dark text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-display uppercase tracking-wide mb-4 sm:mb-6 shadow-lg shadow-secondary/30"
+          >
             ⭐ Experiență Premium
-          </span>
-          <h3 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-3">
+          </motion.span>
+          <h3 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-serif font-bold text-primary mb-3 sm:mb-4 px-4">
             Meniu Degustare Chef [NUME]
           </h3>
-          <p className="text-text-secondary mb-4 max-w-2xl mx-auto">
+          <p className="text-text-secondary mb-4 sm:mb-6 max-w-2xl mx-auto text-sm sm:text-base lg:text-lg px-4 leading-relaxed">
             O călătorie culinară în 7 preparate, fiecare ales și pregătit special pentru a evidenția
             tehnicile și ingredientele premium ale sezonului curent
           </p>
-          <p className="text-4xl font-serif font-bold text-secondary mb-6">XXX lei/persoană</p>
-          <button
+          <p className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-secondary mb-6 sm:mb-8">XXX lei/persoană</p>
+          <motion.button
             onClick={() => {
               const element = document.querySelector('#rezervare');
               if (element) element.scrollIntoView({ behavior: 'smooth' });
             }}
+            whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(184, 149, 106, 0.3)" }}
+            whileTap={{ scale: 0.95 }}
             className="btn-primary"
           >
             Rezervă pentru Meniul Degustare
-          </button>
+          </motion.button>
         </motion.div>
 
-        {/* PDF Download */}
+        {/* PDF Download - Responsive */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-center mt-12"
+          className="text-center mt-8 sm:mt-12 px-4"
         >
-          <p className="text-text-secondary mb-4">
+          <p className="text-text-secondary mb-4 text-sm sm:text-base">
             Meniul nostru se schimbă sezonier pentru a reflecta ingredientele cele mai proaspete
           </p>
-          <a
+          <motion.a
             href="#"
-            className="inline-flex items-center space-x-2 text-secondary hover:text-secondary-dark transition-colors duration-300 font-display uppercase text-sm tracking-wide"
+            whileHover={{ scale: 1.05, x: 5 }}
+            className="inline-flex items-center space-x-2 text-secondary hover:text-secondary-dark transition-colors duration-300 font-display uppercase text-xs sm:text-sm tracking-wide"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -261,7 +283,7 @@ export default function MenuSection() {
               />
             </svg>
             <span>Descarcă meniul complet (PDF)</span>
-          </a>
+          </motion.a>
         </motion.div>
       </div>
     </section>

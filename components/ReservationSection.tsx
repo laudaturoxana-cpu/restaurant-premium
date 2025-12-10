@@ -71,28 +71,31 @@ export default function ReservationSection() {
   return (
     <section id="rezervare" className="section-padding bg-gradient-to-b from-secondary/5 to-secondary/10">
       <div className="max-w-4xl mx-auto">
-        {/* Header */}
+        {/* Header - Responsive */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          className="text-center mb-8 sm:mb-12 lg:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-primary mb-4">
+          <p className="text-secondary uppercase tracking-[0.2em] text-xs sm:text-sm font-display mb-3 sm:mb-4">
+            Rezervări
+          </p>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-primary mb-3 sm:mb-4 px-4">
             Rezervă-ți Masa Acum
           </h2>
-          <p className="text-text-secondary max-w-2xl mx-auto">
+          <p className="text-text-secondary max-w-2xl mx-auto text-sm sm:text-base lg:text-lg px-4 leading-relaxed">
             Garantăm cele mai bune mese pentru rezervările făcute în avans
           </p>
         </motion.div>
 
-        {/* Form */}
+        {/* Form - Better responsive with rounded corners */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="bg-white p-8 md:p-12 rounded-sm shadow-2xl"
+          className="bg-white p-6 sm:p-8 md:p-12 rounded-2xl shadow-2xl border border-secondary/10"
         >
           {submitStatus === 'success' ? (
             <div className="text-center py-12">
@@ -124,11 +127,15 @@ export default function ReservationSection() {
               </p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Name & Phone */}
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-display font-medium text-primary mb-2">
+            <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
+              {/* Name & Phone - Better responsive */}
+              <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                >
+                  <label htmlFor="name" className="block text-xs sm:text-sm font-display font-medium text-primary mb-2">
                     Nume Complet <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -138,12 +145,16 @@ export default function ReservationSection() {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-300"
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all duration-300 text-sm sm:text-base"
                     placeholder="Ion Popescu"
                   />
-                </div>
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-display font-medium text-primary mb-2">
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.35 }}
+                >
+                  <label htmlFor="phone" className="block text-xs sm:text-sm font-display font-medium text-primary mb-2">
                     Telefon <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -153,15 +164,19 @@ export default function ReservationSection() {
                     required
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-300"
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all duration-300 text-sm sm:text-base"
                     placeholder="0721 XXX XXX"
                   />
-                </div>
+                </motion.div>
               </div>
 
               {/* Email */}
-              <div>
-                <label htmlFor="email" className="block text-sm font-display font-medium text-primary mb-2">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
+                <label htmlFor="email" className="block text-xs sm:text-sm font-display font-medium text-primary mb-2">
                   Email <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -171,15 +186,19 @@ export default function ReservationSection() {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-300"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all duration-300 text-sm sm:text-base"
                   placeholder="email@exemplu.ro"
                 />
-              </div>
+              </motion.div>
 
-              {/* Date, Time, Guests */}
-              <div className="grid md:grid-cols-3 gap-6">
-                <div>
-                  <label htmlFor="date" className="block text-sm font-display font-medium text-primary mb-2">
+              {/* Date, Time, Guests - Better responsive grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.45 }}
+                >
+                  <label htmlFor="date" className="block text-xs sm:text-sm font-display font-medium text-primary mb-2">
                     Data <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -190,11 +209,15 @@ export default function ReservationSection() {
                     value={formData.date}
                     onChange={handleChange}
                     min={new Date().toISOString().split('T')[0]}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-300"
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all duration-300 text-sm sm:text-base"
                   />
-                </div>
-                <div>
-                  <label htmlFor="time" className="block text-sm font-display font-medium text-primary mb-2">
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                >
+                  <label htmlFor="time" className="block text-xs sm:text-sm font-display font-medium text-primary mb-2">
                     Ora <span className="text-red-500">*</span>
                   </label>
                   <select
@@ -203,7 +226,7 @@ export default function ReservationSection() {
                     required
                     value={formData.time}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-300"
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all duration-300 text-sm sm:text-base"
                   >
                     <option value="">Selectează</option>
                     {timeSlots.map((slot) => (
@@ -212,9 +235,14 @@ export default function ReservationSection() {
                       </option>
                     ))}
                   </select>
-                </div>
-                <div>
-                  <label htmlFor="guests" className="block text-sm font-display font-medium text-primary mb-2">
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.55 }}
+                  className="sm:col-span-2 md:col-span-1"
+                >
+                  <label htmlFor="guests" className="block text-xs sm:text-sm font-display font-medium text-primary mb-2">
                     Persoane <span className="text-red-500">*</span>
                   </label>
                   <select
@@ -223,7 +251,7 @@ export default function ReservationSection() {
                     required
                     value={formData.guests}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-300"
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all duration-300 text-sm sm:text-base"
                   >
                     {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
                       <option key={num} value={num}>
@@ -232,12 +260,16 @@ export default function ReservationSection() {
                     ))}
                     <option value="10+">10+ persoane</option>
                   </select>
-                </div>
+                </motion.div>
               </div>
 
               {/* Preferences */}
-              <div>
-                <label htmlFor="preferences" className="block text-sm font-display font-medium text-primary mb-2">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.6 }}
+              >
+                <label htmlFor="preferences" className="block text-xs sm:text-sm font-display font-medium text-primary mb-2">
                   Preferințe Speciale
                 </label>
                 <textarea
@@ -246,31 +278,41 @@ export default function ReservationSection() {
                   value={formData.preferences}
                   onChange={handleChange}
                   rows={3}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-300 resize-none"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all duration-300 resize-none text-sm sm:text-base"
                   placeholder="Aniversare, intoleranțe alimentare, cerințe speciale..."
                 />
-              </div>
+              </motion.div>
 
               {/* Tasting Menu Checkbox */}
-              <div className="flex items-center space-x-3">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.65 }}
+                className="flex items-start sm:items-center space-x-3 bg-secondary/5 p-4 rounded-xl"
+              >
                 <input
                   type="checkbox"
                   id="tastingMenu"
                   name="tastingMenu"
                   checked={formData.tastingMenu}
                   onChange={handleChange}
-                  className="w-5 h-5 text-secondary focus:ring-2 focus:ring-secondary border-gray-300 rounded"
+                  className="w-5 h-5 text-secondary focus:ring-2 focus:ring-secondary border-gray-300 rounded mt-0.5 sm:mt-0"
                 />
-                <label htmlFor="tastingMenu" className="text-sm text-text-secondary">
+                <label htmlFor="tastingMenu" className="text-xs sm:text-sm text-text-secondary cursor-pointer">
                   Doresc informații despre meniul degustare
                 </label>
-              </div>
+              </motion.div>
 
-              {/* Submit Button */}
-              <button
+              {/* Submit Button - Enhanced */}
+              <motion.button
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.7 }}
+                whileHover={{ scale: 1.02, boxShadow: "0 20px 40px rgba(184, 149, 106, 0.3)" }}
+                whileTap={{ scale: 0.98 }}
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full btn-primary text-base py-4 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                className="w-full btn-primary text-sm sm:text-base py-4 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
               >
                 {isSubmitting ? (
                   <>
@@ -301,30 +343,37 @@ export default function ReservationSection() {
                 )}
               </button>
 
-              {/* Info Text */}
-              <p className="text-sm text-text-secondary text-center">
+              {/* Info Text - Responsive */}
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: 1 } : {}}
+                transition={{ duration: 0.5, delay: 0.75 }}
+                className="text-xs sm:text-sm text-text-secondary text-center leading-relaxed px-2"
+              >
                 Vei primi confirmarea în maxim 2 ore. Pentru rezervări de peste 6 persoane sau
                 evenimente speciale, te rugăm să ne suni direct.
-              </p>
+              </motion.p>
             </form>
           )}
         </motion.div>
 
-        {/* Alternative Contact */}
+        {/* Alternative Contact - Enhanced responsive */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-center mt-8"
+          className="text-center mt-6 sm:mt-8 px-4"
         >
-          <p className="text-text-secondary mb-4">
+          <p className="text-text-secondary mb-3 sm:mb-4 text-sm sm:text-base">
             Preferi să vorbești direct?
           </p>
-          <a
+          <motion.a
             href="tel:0721000000"
-            className="inline-flex items-center space-x-2 text-secondary hover:text-secondary-dark transition-colors duration-300 font-display text-lg"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex flex-wrap items-center justify-center gap-2 text-secondary hover:text-secondary-dark transition-colors duration-300 font-display text-base sm:text-lg"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -333,8 +382,8 @@ export default function ReservationSection() {
               />
             </svg>
             <span>0721 XXX XXX</span>
-            <span className="text-sm text-text-secondary">(răspundem 10:00-22:00)</span>
-          </a>
+            <span className="text-xs sm:text-sm text-text-secondary">(răspundem 10:00-22:00)</span>
+          </motion.a>
         </motion.div>
       </div>
     </section>
