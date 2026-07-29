@@ -127,7 +127,7 @@ export default function Header() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="lg:hidden fixed inset-0 top-[60px] sm:top-[68px] backdrop-blur-2xl bg-primary/95 overflow-hidden z-40"
+            className="lg:hidden fixed inset-0 backdrop-blur-2xl bg-primary/95 overflow-hidden z-40 pt-20"
           >
             <nav className="flex flex-col h-full px-6 sm:px-8 py-8 sm:py-12 overflow-y-auto">
               <div className="flex-1 space-y-2 sm:space-y-3">

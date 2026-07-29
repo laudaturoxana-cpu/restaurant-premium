@@ -14,7 +14,7 @@ import WhatsAppButton from '@/components/WhatsAppButton';
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen pt-20 sm:pt-24">
       {/* Fixed Header */}
       <Header />
 
